@@ -38,7 +38,24 @@ flowchart LR
 Сохраняет статистику корзин, снимки применённых акций и действий, изменения
 каждого товара; предоставляет Blade-интерфейс, фильтры и Excel mini/max.
 PHP 8.2+, Laravel 11/12; тестовое окружение — Laravel 12. Лицензия MIT.
-GitHub и Packagist пока не опубликованы.
+Исходники опубликованы в GitHub. В Packagist пакет пока не зарегистрирован.
+
+## Установка с GitHub
+
+После выпуска тегов `v1.0.0` обоих пакетов:
+
+```bash
+composer config repositories.product-discounts vcs https://github.com/Ilia-Xorosh/laravel-product-discounts
+composer config repositories.product-discounts-reports vcs https://github.com/Ilia-Xorosh/laravel-product-discounts-reports
+composer require product-discounts/laravel-product-discounts-reports:^1.0 -W
+php artisan vendor:publish --tag=product-discounts-reports-config
+php artisan vendor:publish --tag=product-discounts-reports-migrations
+php artisan migrate
+```
+
+Основной пакет установится как зависимость. При первой установке также
+опубликуйте его конфигурацию и миграции, настройте каталог и права доступа.
+Оба VCS-репозитория необходимо указать именно в приложении.
 
 ## Установка локально
 
