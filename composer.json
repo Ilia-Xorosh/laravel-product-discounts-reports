@@ -1,0 +1,18 @@
+{
+    "name": "product-discounts/laravel-product-discounts-reports",
+    "description": "Optional basket statistics, promotion snapshots and XLSX exports for Laravel Product Discounts",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "product-discounts/laravel-product-discounts": "^1.0",
+        "phpoffice/phpspreadsheet": "^5.0"
+    },
+    "require-dev": {"orchestra/testbench": "^10.0", "phpunit/phpunit": "^11.0"},
+    "autoload": {"psr-4": {"ProductDiscounts\\Reports\\": "src/"}},
+    "autoload-dev": {"psr-4": {"ProductDiscounts\\Reports\\Tests\\": "tests/"}},
+    "extra": {"laravel": {"providers": ["ProductDiscounts\\Reports\\ReportsServiceProvider"]}},
+    "repositories": [{"type": "path", "url": "../laravel-product-discounts", "options": {"versions": {"product-discounts/laravel-product-discounts": "1.0.0"}, "symlink": false}}],
+    "prefer-stable": true,
+    "scripts": {"test": "phpunit"}
+}

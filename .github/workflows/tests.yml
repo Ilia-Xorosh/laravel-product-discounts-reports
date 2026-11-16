@@ -1,0 +1,27 @@
+name: Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.2', '8.3']
+    defaults:
+      run:
+        working-directory: laravel-product-discounts-reports
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: laravel-product-discounts-reports
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.CORE_REPOSITORY || format('{0}/laravel-product-discounts', github.repository_owner) }}
+          path: laravel-product-discounts
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, pdo_sqlite, gd, zip
+          coverage: none
+      - run: composer validate --strict
+      - run: composer install --prefer-dist --no-interaction
+      - run: composer test
